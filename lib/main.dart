@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 void main() {
   // TodoDatabase.instance.init();
-  runApp(MyHomePage());
+  runApp(const MyHomePage());
 }
 
 // top: add list
