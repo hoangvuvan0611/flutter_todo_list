@@ -41,7 +41,24 @@ samples, guidance on mobile development, and a full API reference.
   - ----------+ TodoList:
   - --------------------+ didChangeDependencies() method được sử dụng để gọi hàm init cho todoList
   - --------------------+ build() return Consumer() - là một widget được sử dụng để lắng nghe(listen), tiêu thụ(consumed), receive(nhận) dữ liệu từ Provider
-  - ----------------------------+ StreamBuilder(): receive a stream todos  
+  - ----------------------------+ StreamBuilder(): receive a stream todos
+
+## base directory
+### base_event
+  -  contain BaseEvent object
+### base_bloc.dart
+  - chứa thuộc tính eventStream co kiểu StreamController, quản lý luồng stream dữ liệu đưa vào.
+  - event method là dạng hàm get có kiểu Sink để đưa dữ liệu vào stream
+  - Trong hàm constructor của BaseBloc nó sẽ đẩy dữ liệu đi thông qua một class extend
+  -----+ khi một event được tạo thì một BaseBloc cũng được tạo, hàm constructor sẽ đẩy data đó vào Sink<BaseEvent> để truyền đi
+
+## bloc diẻctory
+  - TodoBloc extend BaseBloc
+  - chứa thuộc tính todoListStream có liểu StreamController<List<Todo>>
+  - BaseBloc có một thuộc tính có kiểu StreamController<BaseEvent> còn TodoBloc có kiểu StreamController<List<Todo>> là vì:
+  - --------+ Trong BaseBloc, stream chỉ chứa một todo hay event được nhập vào từ người dùng
+  - --------+ Trong TodoBloc, stream chứa list các todo
+  - --------+ get method thuộc tính đó sẽ trả về luồng list<Todo>
 
 
 
